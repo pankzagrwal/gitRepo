@@ -13,6 +13,10 @@ Input any GIT repo url and press enter.
 Count of Open issue, open in last 1 and 7 days is dispalyed. On click of count, the Issue List get displayed and on click of 
 specific issue, comments related to the issue is fetched and displayed.
 
+To run locally, start the server, go to server.js folder and run command "node server.js"
+Open browser and type: 
+http://localhost:8080/
+
 UI Design is pending.
 
 Tech Used:
