@@ -1,7 +1,8 @@
 # gitRepo
 Get Open Issues details given any Git Repo url
 
-Working project can be access via http://htmlpreview.github.io/?https://github.com/pankzagrwal/gitRepo/blob/master/public/index.html
+Working project can be access via 
+http://htmlpreview.github.io/?https://github.com/pankzagrwal/gitRepo/blob/master/public/index.html
 
 GIT's GET API used to fetch all open issue and comment of respective issue.
 
