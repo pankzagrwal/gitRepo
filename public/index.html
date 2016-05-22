@@ -1,0 +1,80 @@
+
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="css/app.css">
+			<title>Demo</title>
+		</head>
+		<body ng-app = "app">
+		<!-- GIT Table Format -->
+		<div ng-controller = "gitController">
+			<div class="gitUrlWrapper">
+				<form id = "gitInputForm" ng-submit = "submitHandler()" >
+					<input class = "col-md-10" type="text" name="" id = "gitUrlInput" ng-model = "gitUrlInput" placeholder="gitHub URL">
+				</form>
+			</div>
+		   	<div ng-show="isIssueLoading">
+				Loading...
+			</div>
+			<table class="table table-striped" >
+			    <thead>
+			        <tr>
+			            <th>Total Open Issue</th>
+			            <th>In last 24 Hr.</th>
+			            <th>In > 7 days</th>
+			            <th>Issue List <span ng-show = "inDay > 0" > in last {{inDay}} Days</span> </th>
+			            <th>Issue Comments</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+
+			            <td ng-bind = "repoDetails.open_issues_count" class = "col-md-1" ng-click = getIssues(0)>-</td>
+			            <td ng-bind = "repoDetails.open_issues_count_1D" ng-click = "getIssues(1)" class = "col-md-1">-</td>
+			            <td ng-bind = "repoDetails.open_issues_count_7D" ng-click = "getIssues(7)" class = "col-md-1">-</td>
+			            <td class = "col-md-5">
+			            	<div ng-repeat = "issue in issueList" ng-class="{selected: $index === idSelectedIssue}" ng-click = "getComments($index)">
+			            		<p ng-bind= "issue.body" ></p>
+			            	</div>
+			            </td>
+			          	<td class = "col-md-5">
+			          		<div ng-show= "isCommentLoading">
+			          			Loading...
+			          		</div>
+			            	<div ng-repeat = "comment in commentList">
+				            	<div>
+					            	<div class = "userpro">
+										 <img ng-src= {{comment.user.avatar_url}} alt="">
+										  <span class = "name" ng-bind = "comment.user.login" ng-title = "comment.user.login"></span>
+										</div>
+										  
+										  <div class = "comment">
+										    <p ng-bind = "comment.body"></p>
+										  </div>
+
+									</div>
+				            	</div>
+			            	</div>
+			            	<div class="newComment" ng-show = "commentList.length">
+
+			            	<form id = "commentForm">
+			            		<textarea id = "commentBox" ng-model = "userComment" placeholder="Enter your comment here">
+			            			
+			            		</textarea>	
+			            		<input type="submit" name="" ng-click = "submitComment()">            		
+			            	</form>
+
+			            		
+			            	</div>
+			            </td>
+			        </tr>
+			    </tbody>
+			</table>
+		</div>
+
+		<!-- <script type="text/javascript" src = "thirdparty/angular-min.js"></script> -->
+		<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script type="text/javascript" src = "js/app.js"></script>
+		</body>
+		</html>
